@@ -12,6 +12,8 @@
 
 This repository contains only the **backend** of the platform. The native processing binaries (`engine/`) are included as compiled artifacts for both Windows and Linux.
 
+For the obfuscation engine this project uses, check out the engine developers repository: https://github.com/mitoiscool/VirtualGuard
+
 ---
 
 ## Goals & Purpose
