@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VirtualGuard Dashboard</title>
+  <link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+  rel="stylesheet"
+  />
+  <link rel="stylesheet" href="../assets/css/tailwind.output.css" />
+  <script
+  src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+  defer
+  ></script>
+  <script src="../assets/js/init-alpine.js"></script>
+  <script src="engine.js" defer></script>
+  <script src="../panel_general.js" defer></script>
+  <script src="
+  https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js
+  "></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" defer></script>
+</head>
+<body>
+  <div class="flex h-screen bg-gray-50 dark:bg-gray-900">
+    <!-- Desktop sidebar -->
+    <aside class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0">
+      <div class="py-4 text-gray-500 dark:text-gray-400">
+        <a href="/" class="text-lg font-semibold md:text-xl text-gray-800 dark:text-gray-200">
+          
+          <h1 class="font-bold px-4"> <span><img src="/assets/shield.png" class="h-8 inline-block"> </span>
+            VirtualGuard </h1>
+          </a>
+          
+          <!-- PAGE SELECTOR -->
+          <ul class="mt-6">
+            <li class="relative px-6 py-3">
+              <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+              href="/p/panel">
+              <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+              <path
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+            </path>
+          </svg>
+          <span class="ml-4">Dashboard</span>
+        </a>
+      </li>
+      
+      <li class="relative px-6 py-3">
+        <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+        aria-hidden="true"></span>
+        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+        href="/p/panel/upload">
+        <svg style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;" xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm56 256c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120z"/></svg>
+        <span class="ml-4">Project Configuration</span>
+      </a>
+    </li>
+    
+    <li class="relative px-6 py-3">
+      <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+      href="/p/panel/view_tickets">
+      <svg style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;" xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm169.8-90.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24V250.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1H222.6c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/></svg>
+      
+      <span class="ml-4">Support</span>
+    </a>
+  </li>
+  
+  <!--ADMIN BUTTON-->
+  <li class="relative px-6 py-3" id="adminButton" style="visibility: hidden;">
+    <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+    href="/admin">
+    <svg style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;" xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M248 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V56H168c-13.3 0-24 10.7-24 24s10.7 24 24 24h32v40H59.6C26.7 144 0 170.7 0 203.6c0 8.2 1.7 16.3 4.9 23.8L59.1 352h52.3L49 208.2c-.6-1.5-1-3-1-4.6c0-6.4 5.2-11.6 11.6-11.6H224 388.4c6.4 0 11.6 5.2 11.6 11.6c0 1.6-.3 3.2-1 4.6L336.5 352h52.3l54.2-124.6c3.3-7.5 4.9-15.6 4.9-23.8c0-32.9-26.7-59.6-59.6-59.6H248V104h32c13.3 0 24-10.7 24-24s-10.7-24-24-24H248V24zM101.2 432H346.8l16.6 32H84.7l16.6-32zm283.7-30.7c-5.5-10.6-16.5-17.3-28.4-17.3H91.5c-12 0-22.9 6.7-28.4 17.3L36.6 452.5c-3 5.8-4.6 12.2-4.6 18.7C32 493.8 50.2 512 72.8 512H375.2c22.5 0 40.8-18.2 40.8-40.8c0-6.5-1.6-12.9-4.6-18.7l-26.5-51.2z"/></svg>
+    <span class="ml-4">Admin</span>
+  </a>
+</li>
+</ul>
+
+
+</div>
+</aside>
+<!-- Mobile sidebar -->
+<!-- Backdrop -->
+<div x-show="isSideMenuOpen" x-transition:enter="transition ease-in-out duration-150"
+x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+x-transition:leave="transition ease-in-out duration-150" x-transition:leave-start="opacity-100"
+x-transition:leave-end="opacity-0"
+class="fixed inset-0 z-10 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"></div>
+<aside class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden"
+x-show="isSideMenuOpen" x-transition:enter="transition ease-in-out duration-150"
+x-transition:enter-start="opacity-0 transform -translate-x-20" x-transition:enter-end="opacity-100"
+x-transition:leave="transition ease-in-out duration-150" x-transition:leave-start="opacity-100"
+x-transition:leave-end="opacity-0 transform -translate-x-20" @click.away="closeSideMenu"
+@keydown.escape="closeSideMenu">
+<div class="py-4 text-gray-500 dark:text-gray-400">
+  <a href="/" class="text-lg font-semibold md:text-xl text-gray-800 dark:text-gray-200">
+    
+    <h1 class="font-bold px-4"> <span><img src="/assets/shield.png" class="h-8 inline-block"> </span>
+      VirtualGuard </h1>
+    </a>
+    
+    <ul class="mt-6">
+      <li class="relative px-6 py-3">
+        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+        href="/p/panel">
+        <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
+        stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+        <path
+        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+      </path>
+    </svg>
+    <span class="ml-4">Dashboard</span>
+  </a>
+</li>
+
+<li class="relative px-6 py-3">
+  <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+  aria-hidden="true"></span>
+  <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+  href="/p/panel/upload">
+  <svg style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;" xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm56 256c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120z"/></svg>
+  <span class="ml-4">Project Configuration</span>
+</a>
+</li>
+
+<li class="relative px-6 py-3">
+  <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+  href="/p/panel/view_tickets">
+  <svg style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;" xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm169.8-90.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24V250.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1H222.6c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/></svg>
+  
+  <span class="ml-4">Support</span>
+</a>
+</li>
+
+<!--ADMIN BUTTON-->
+<li class="relative px-6 py-3" id="adminButton" style="visibility: hidden;">
+  <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+  href="/admin">
+  <svg style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;" xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M248 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V56H168c-13.3 0-24 10.7-24 24s10.7 24 24 24h32v40H59.6C26.7 144 0 170.7 0 203.6c0 8.2 1.7 16.3 4.9 23.8L59.1 352h52.3L49 208.2c-.6-1.5-1-3-1-4.6c0-6.4 5.2-11.6 11.6-11.6H224 388.4c6.4 0 11.6 5.2 11.6 11.6c0 1.6-.3 3.2-1 4.6L336.5 352h52.3l54.2-124.6c3.3-7.5 4.9-15.6 4.9-23.8c0-32.9-26.7-59.6-59.6-59.6H248V104h32c13.3 0 24-10.7 24-24s-10.7-24-24-24H248V24zM101.2 432H346.8l16.6 32H84.7l16.6-32zm283.7-30.7c-5.5-10.6-16.5-17.3-28.4-17.3H91.5c-12 0-22.9 6.7-28.4 17.3L36.6 452.5c-3 5.8-4.6 12.2-4.6 18.7C32 493.8 50.2 512 72.8 512H375.2c22.5 0 40.8-18.2 40.8-40.8c0-6.5-1.6-12.9-4.6-18.7l-26.5-51.2z"/></svg>
+  <span class="ml-4">Admin</span>
+</a>
+</li>
+</ul>
+</aside>
+
+
+<div class="flex flex-col flex-1 w-full">
+  <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
+    <div
+    class="container flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300">
+    <!-- Mobile hamburger -->
+    <button class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
+    @click="toggleSideMenu" aria-label="Menu">
+    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd"
+      d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+      clip-rule="evenodd"></path>
+    </svg>
+  </button>
+  
+  
+  <ul class="absolute right-0 flex items-center flex-shrink-0 space-x-6 px-5">
+    <!-- Theme toggler -->
+    <li class="flex">
+      <button class="rounded-md focus:outline-none focus:shadow-outline-purple" @click="toggleTheme"
+      aria-label="Toggle color mode">
+      <template x-if="!dark">
+        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+        </svg>
+      </template>
+      <template x-if="dark">
+        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd"
+          d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+          clip-rule="evenodd"></path>
+        </svg>
+      </template>
+    </button>
+  </li>
+  
+  <!-- Profile menu -->
+  <li class="relative">
+    <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
+    @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account" aria-haspopup="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+      <path fill-rule="evenodd"
+      d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+      clip-rule="evenodd" />
+    </svg>
+    
+  </button>
+  <template x-if="isProfileMenuOpen">
+    <ul x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0" @click.away="closeProfileMenu" @keydown.escape="closeProfileMenu"
+    class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700"
+    aria-label="submenu">
+    <li class="flex">
+      <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+      href="#">
+      <svg class="w-4 h-4 mr-3" aria-hidden="true" fill="none" stroke-linecap="round"
+      stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+      <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+    </svg>
+    <span>Profile</span>
+  </a>
+</li>
+<li class="flex">
+  <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+  href="/API/V1/user/logout">
+  <svg class="w-4 h-4 mr-3" aria-hidden="true" fill="none" stroke-linecap="round"
+  stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+  <path
+  d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1">
+</path>
+</svg>
+<span>Log out</span>
+</a>
+</li>
+</ul>
+</template>
+</li>
+
+</ul>
+</div>
+</header>
+
+
+
+
+<main class="h-full overflow-y-auto">
+  <div class="container px-6 mx-auto grid">
+    
+    <!-- Big section cards -->
+    <h4 class="mb-4 mt-6 text-lg font-semibold text-gray-600 dark:text-gray-300">Project Configuration</h4>
+    
+    <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+      <!--General config-->
+      
+      <label class="block mt-5 text-sm">
+        <span class="text-gray-700 dark:text-gray-400" id="selectableOptionHoverAnchor">Project Name</span>
+        <input readonly
+        id="projectName"
+        class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+        value="ProjectName"
+        ></input>
+      </label>
+      
+      <label class="block mt-2 text-sm">
+        <span class="text-gray-700 dark:text-gray-400" id="selectableOptionHoverAnchor">
+          Enable Cloud Protection
+        </span>
+        <select
+        id = "enableCloudProtection"
+        class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+        >
+        <option>Yes</option>
+        <option selected>No</option>
+      </select>
+    </label>
+  </div>
+  
+  
+  <div id ="allCloudOptions" style="max-height: 0px;">
+    
+    <h4 id="cloudOptionsTextFade" style="opacity: 0;" class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">Cloud Configuration</h4>
+    <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+      <!--Cloud options-->
+      <label class="block mt-2 text-sm">
+        <span class="text-gray-700 dark:text-gray-400" id="selectableOptionHoverAnchor">
+          Cloud Integrity Check
+        </span>
+        <select
+        id = "cloudIntegrityCheck"
+        class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+        >
+        <option>Yes</option>
+        <option selected>No</option>
+      </select>
+    </label>
+    
+    <label class="block mt-2 text-sm">
+      <span class="text-gray-700 dark:text-gray-400" id="selectableOptionHoverAnchor">
+        Cloud Auto Update
+      </span>
+      <select
+      id = "cloudAutoUpdate"
+      class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+      >
+      <option>Yes</option>
+      <option selected>No</option>
+    </select>
+  </label>
+</div>
+</div>
+
+
+
+<h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">File Configuration</h4>
+
+<div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+  
+  <label class="block mt-2 text-sm">
+    <span class="text-gray-700 dark:text-gray-400" id="selectableOptionHoverAnchor" >Input File Name</span>
+    <input readonly
+    id="inputFileName"
+    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+    value="MyTestApp.exe"
+    ></input>
+  </label>
+  
+  <label class="block mt-2 text-sm">
+    <span class="text-gray-700 dark:text-gray-400" id="selectableOptionHoverAnchor">Output File Name</span>
+    <input
+    id="outputFileName"
+    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+    value="MyTestApp-guarded.exe"
+    ></input>
+  </label>
+  
+  <h5 class="mt-4 mb-2 font-semibold text-gray-600 dark:text-gray-300">
+    Protection Options
+  </h5>
+  
+  <label class="block text-sm">
+    <span class="text-gray-700 dark:text-gray-400" id="selectableOptionHoverAnchor">
+      Import Protection
+    </span>
+    <select
+    id = "importProtection"
+    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+    >
+    <option default>None</option>
+    <option>Delegate</option>
+    <option>Virtualized</option>
+  </select>
+</label>
+
+<label class="mt-2 block text-sm">
+  <span class="text-gray-700 dark:text-gray-400" id="selectableOptionHoverAnchor">
+    String Hiding
+  </span>
+  <select
+  id = "stringHiding"
+  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+  >
+  <option default>None</option>
+  <option>Basic</option>
+  <option>Virtualized</option>
+</select>
+</label>
+
+<label class="mt-2 block text-sm">
+  <span class="text-gray-700 dark:text-gray-400" id="selectableOptionHoverAnchor">
+    Anti Debug
+  </span>
+  <select
+  id = "antiDebug"
+  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+  >
+  <option default>None</option>
+  <option>Basic</option>
+  <option>Advanced</option>
+</select>
+</label>
+
+<label class="mt-2 block text-sm">
+  <span class="text-gray-700 dark:text-gray-400" id="selectableOptionHoverAnchor">
+    Virtual Junk
+  </span>
+  <select
+  id = "virtualJunk"
+  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+  >
+  <option default>None</option>
+  <option>Minimal</option>
+  <option>Maximized</option>
+</select>
+</label>
+
+<label class="block mt-2 text-sm">
+  <span class="text-gray-700 dark:text-gray-400" id="selectableOptionHoverAnchor">VM Sections</span>
+  <input
+  id = "vmSections"
+  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+  placeholder="Leave blank for random"
+  ></input>
+</label>
+
+<label class="block mt-2 text-sm">
+  <span class="text-gray-700 dark:text-gray-400" id="selectableOptionHoverAnchor">Watermark</span>
+  <input
+  id = "watermark"
+  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+  placeholder="VirtualGuard"
+  ></input>
+</label>
+
+<label class="mt-2 block text-sm">
+  <span class="text-gray-700 dark:text-gray-400" id="selectableOptionHoverAnchor">
+    Rename Debug Symbols
+  </span>
+  <select
+  id = "renamesymbols"
+  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+  >
+  <option default>Enabled</option>
+  <option>Disabled</option>
+</select>
+</label>
+
+<label class="mt-2 block text-sm">
+  <span class="text-gray-700 dark:text-gray-400" id="selectableOptionHoverAnchor">
+    Renaming Mode
+  </span>
+  <select
+  id = "renamingmode"
+  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+  >
+  <option>Minimal</option>
+  <option>Real</option>
+  <option>Hidden</option>
+  <option default>Alphanumeric</option>
+</select>
+</label>
+
+<div class="flex justify-center mt-4">
+  <button
+  id="saveConfigButton"
+  class="flex-1 mr-6 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+  >
+  <span>Save Config</span>
+</button>
+
+<button
+id="protectButton"
+class="flex-1 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+>
+<span>Protect</span>
+</button>
+</div>
+
+
+
+
+</div>
+
+
+<!-- With actions -->
+<h4
+class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300"
+>
+Member Overview
+</h4>
+<input id="searchForMembers" type="text" class="px-4 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-400 gray-500 border-b dark:border-gray-700 bg-gray-50 dark:text-white dark:bg-gray-800 mb-4" placeholder="Search for member by name">
+
+
+<div class="w-full overflow-hidden rounded-lg shadow-xs">
+  <div class="w-full overflow-x-auto">
+    <table class="w-full whitespace-no-wrap">
+      <thead>
+        <tr
+        class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+        >
+        <th class="px-4 py-3">Member</th>
+        <th class="px-4 py-3">Size</th>
+        
+        <th style="padding-right: 4rem;" class="px-4 py-3">Protection Type</th>
+        <th class="px-4 py-3">Actions</th>
+      </tr>
+    </thead>
+    <tbody
+    id="memberHome"
+    class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+    >
+    <!-- Rows Start -->
+    
+    <!-- Rows End -->
+  </tbody>
+</table>
+</div>
+<div
+class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800"
+>
+<span id="memberAmount" class="flex items-center col-span-3">
+</span>
+<span class="col-span-2"></span>
+<!-- Pagination -->
+</div>
+</div>
+
+</div>
+</main>
+</div>
+</div>
+<!-- Modal -->
+<div class="backdrop hidden fixed top-0 left-0 w-full h-full bg-black opacity-50"></div>
+<div class="modal hidden fixed top-0 left-0 w-full h-full flex items-center justify-center" id="fileProcessModal" style = "overflow: hidden; z-index:9999">
+  <div class="modal-content bg-white rounded-lg shadow-lg p-6" style = "overflow: hidden;">
+    <span class="close absolute top-0 right-0 p-4 cursor-pointer hidden">&times;</span>
+    <h2 id="modalTitle" class="text-xl text-center font-bold mb-4">Compiling file... Please wait...</h2>
+    <img id="loadingImg" src="/assets/loading.gif"></img>
+    <textarea id="modalTextbox" style="background:#1a1c23" class="hidden w-full h-64 bg-gray-100 rounded-lg p-2"></textarea>
+    <h3 id="modalDescription" class="text-center font-bold mt-4"></h3>
+  </div>
+</div>
+<style>
+  .modal-open {
+    overflow: hidden;
+  }
+  .modal-open::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 9999;
+  }
+  /* Style the modal content box */
+  .modal-content {
+    background-color: #24262d; /* Set the background color to #24262d */
+    color: #d5d6d7;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 600px; /* Set the maximum width of the modal */
+    width: 80%; /* Set the initial width of the modal */
+    max-height: 80%; /* Set the maximum height of the modal */
+    overflow-y: auto; /* Enable vertical scrolling if the content overflows */
+  }
+  /* New CSS class for fading in the modal */
+  .modal-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  textarea {
+    width: 300px; /* Adjust this value to set the desired width */
+    height: 400px; /* Adjust this value to set the desired height */
+    resize: none; /* Prevent the textarea from being resizable */
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /*animation floatDown*/
+  @keyframes floatDown {
+    0% {
+      transform: translateY(0px);
+    }
+    20% {
+      transform: translateY(-50px);
+    }
+    40%
+    {
+      opacity: 0;
+    }
+    60% {
+      opacity: 0;
+      transform: translateY(300px);
+    }
+    80%
+    {
+      transform: translateY(0px);
+      opacity: 1;
+      scale: 100%;
+    }
+    100%
+    {
+      transform: translateY(0px);
+      transform: translateY(0px) rotate(360deg);
+      scale: 0%;
+    }
+  }
+
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+
+/* Tooltip text */
+.tooltiptext {
+  visibility: visible;
+  pointer-events: none;
+  max-height: 150px;
+  min-width: 200px;
+  max-width: 650px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+  bottom: 20px;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+  padding: 5px;
+}
+
+.tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+  
+</style>
+<!--Modal end-->
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>VirtualGuard | 404</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            /* Page Styles */
+            body {
+                background-color: #333;
+                font-family: Arial, sans-serif;
+                color: #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+            .container {
+                text-align: center;
+                padding: 2rem;
+                max-width: 60%;
+                border-radius: 10px;
+                background-color: #222;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            }
+            h1 {
+                font-size: 3rem;
+                color: #fff;
+                margin-bottom: 0;
+            }
+            h2 {
+                font-size: 1.5rem;
+                color: #ccc;
+                margin-top: 0;
+            }
+            p {
+                font-size: 1.2rem;
+                color: #ccc;
+                margin-top: 20px;
+            }
+            pre {
+                background-color: #444;
+                color: #fff;
+                font-size: 1rem;
+                padding: 10px;
+                border-radius: 5px;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+                overflow: auto;
+                margin-top: 20px;
+            }
+            button {
+                background-color: #555;
+                color: #fff;
+                font-size: 1.2rem;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-top: 20px;
+                transition: background-color 0.3s ease;
+            }
+            button:hover {
+                background-color: #777;
+            }
+            button:active {
+                background-color: #444;
+            }
+        </style>
+    </head>
+<body>
+    <div class="container">
+        <h1>403 - Forbidden</h1>
+        <br>
+        <h2 id="mainInfo">You do not have access to the resource you tried to access.</h2>
+        <br>
+        <h2 id="addintionalInfo"></h2>
+        <button onclick="window.history.back()">Go Back</button>
+        <p>Additional Information:</p>
+        <pre id="debug"></pre>
+    </div>
+    <script>
+        const date = new Date();
+        const formattedDate = `${date.toLocaleDateString()} at ${date.toLocaleTimeString()}`;
+        function cookie_exists(name)
+        {
+            return document.cookie.match(new RegExp('^(.*;)?\\s*' + name + '\\s*=\\s*[^;]+(.*)?$'));
+        }
+        const previousPage = document.referrer || 'Unknown';
+        const navigationEntries = window.performance.getEntriesByType('navigation');
+        const previousNavigationEntry = navigationEntries.length > 1 ? navigationEntries[navigationEntries.length - 2] : null;
+        const redirectStatus = previousNavigationEntry && previousNavigationEntry.redirectCount > 0 ? previousNavigationEntry.transferSize : 'Unknown';
+
+
+        const debugMessage = `Date/Time: ${formattedDate}\nPrevious Page: ${previousPage}\nRedirect Status: ${redirectStatus}\nSession: ` + (cookie_exists('_vg_logged_in') ? 'true' : 'false');
+        const debugElement = document.getElementById('debug');
+        debugElement.textContent = debugMessage;
+
+        if (!cookie_exists('_vg_logged_in')) {
+            document.getElementById('mainInfo').textContent += 'You may need to login to access this resource.';
+        }
+
+        //get url param
+        const reason = new URLSearchParams(window.location.search).get('reason');
+        if (reason) {
+            document.getElementById('addintionalInfo').textContent = reason;
+        }
+        else
+        {
+            document.getElementById('addintionalInfo').textContent = 'No additional information.';
+        }
+
+    </script>
+</body>
+</html>

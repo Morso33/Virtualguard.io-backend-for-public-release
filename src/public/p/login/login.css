@@ -1,0 +1,29 @@
+@keyframes falling-text {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    30% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    90% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-100px);
+    }
+  }
+  
+  #notification {
+    cursor: pointer;
+    opacity: 0;
+    animation-duration: 1.9s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    border-radius: 20px;
+    display: block;
+  }

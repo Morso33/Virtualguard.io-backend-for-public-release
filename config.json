@@ -1,0 +1,9 @@
+{
+    "env": "dev",
+    "links": {
+        "discord": "https://discord.gg/2fNhaYxfWK",
+        "twitter": "https://twitter.com/VirtualGuardIO"
+    },
+    "google_captcha_secret_key": "REDACTED",
+    "maintenance": false
+}

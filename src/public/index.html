@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/global_js/purchase_manager.js" defer></script>
+    <script src="/global_js/notification_manager.js" defer></script>
+    <title>VirtualGuard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css">
+</head>
+<body>
+    
+    <section class="w-full px-8 text-gray-700 bg-white">
+        <div class="flex flex-col flex-wrap items-center justify-between py-6 mx-auto md:flex-row max-w-7xl">
+            <div class="relative flex flex-col md:flex-row tracking-wide">
+                <div class="relative z-10 flex items-center w-auto px-4 leading-10 lg:flex-grow-0 lg:flex-shrink-0 lg:text-left">
+                    <a href="#_" class="text-lg font-semibold text-gray-700 md:text-xl">
+                        <h1 class="font-bold"> <span><img src="./assets/shield.png" class="h-8 inline-block"> </span> VirtualGuard </h1>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="inline-flex flex-col items-center sm:flex-row sm:ml-5 lg:justify-end">
+                <nav class="flex flex-wrap items-center space-x-4 text-xs font-semibold tracking-wide uppercase sm:space-x-6">
+                    <a href="#_hero" class="text-gray-500 hover:text-gray-500">Home</a>
+                    <a href="#_features" class="text-gray-400 hover:text-gray-500">Features</a>
+                    <a href="#_pricing" class="text-gray-400 hover:text-gray-500">Pricing</a>
+                    <a href="/p/info/contact" class="text-gray-400 hover:text-gray-500">Contact</a>
+                </nav>
+                <!--Register button-->
+                <div id ="loginRegisterFront">
+                    <a href="/p/register" class="inline-flex tracking-wide uppercase text-xs items-center sm:mt-0 mt-5 sm:ml-8 justify-center px-5 py-2.5 font-semibold text-white bg-blue-500 border border-transparent rounded-md shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">Sign Up</a>
+                    <a href="/p/login" class="inline-flex tracking-wide uppercase text-xs items-center sm:mt-0 mt-5 sm:ml-4 justify-center px-5 py-2.5 font-semibold text-white bg-purple-600 border border-transparent rounded-md shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="_hero" class="relative flex flex-col items-center justify-center w-full px-6 py-12 bg-gray-100 bg-cover lg:py-24 min-w-screen">
+        <div class="flex flex-col items-center justify-center mx-auto sm:p-6 xl:p-8 lg:flex-row lg:max-w-6xl lg:p-0">
+            <div class="container relative z-20 flex flex-col w-full px-5 pb-1 pr-12 mb-16 text-2xl text-gray-700 lg:w-1/2 sm:pr-0 md:pr-6 md:pl-0 lg:pl-5 xl:pr-10 sm:items-center lg:items-start lg:mb-0">
+                <h1 class="relative z-20 text-5xl font-extrabold leading-none text-gray-800 xl:text-6xl sm:text-center lg:text-left" data-primary="purple-500">
+                    Modern<br>
+                    <span class="mt-1 text-purple-500 relative">code protection.</span>
+                </h1>
+                <p class="relative z-20 block mt-6 text-base text-gray-500 xl:text-xl sm:text-center lg:text-left">VirtualGuard integrates cryptic code transformation, dynamic virtualization, and advanced encryption, providing an impervious defense for your .NET applications against cyber threats.</p>
+                <div class="relative flex mt-4">
+                    <a data-tilt href="#_" class="slide-in-btn flex items-center self-start justify-center px-5 py-2 mt-5 text-base font-medium leading-tight text-white transition duration-150 ease-in-out bg-purple-500 border border-transparent rounded-full shadow lg:py-4 hover:bg-purple-600 focus:outline-none focus:border-purple-600 focus:shadow-outline-purple md:text-lg xl:text-xl md:px-5 xl:px-10" data-primary="purple-500" data-rounded="rounded-full">View Pricing</a>
+                    <a data-tilt href="https://docs.virtualguard.io/" class="relative flex items-center self-start justify-center py-2 pl-10 pr-5 mt-5 ml-5 text-base font-medium leading-tight text-purple-400 transition duration-150 ease-in-out bg-purple-200 border-transparent rounded-full shadow-sm lg:py-4 md:pl-16 md:pr-5 xl:pr-10 hover:text-purple-500 focus:outline-none md:text-lg xl:text-xl" data-primary="purple-500" data-rounded="rounded-full">
+                        <svg class="absolute left-0 w-6 h-6 ml-3 md:w-10 md:h-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                        <span class="text-purple-400" data-primary="purple-300">Documentation</span>
+                    </a>
+                </div>
+            </div>
+            <div data-tilt class="relative flex items-center justify-center w-full mt-10 md:mt-0 md:w-1/2 group-hover:shadow-outline-purple-500">
+                <div class="relative cursor-pointer group">
+                    <article class="card">
+                        <figure class="cd-image-container">
+                            <img src="assets/after.png" alt="Original">
+                            <span class="cd-image-label font-semibold" data-type="original">Obfuscated</span>
+                            
+                            <div class="cd-resize-img"> <img src="assets/before.png" alt="Obfuscated">
+                                <span class="cd-image-label" data-type="modified">Original</span>
+                            </div>
+                            
+                            <span class="cd-handle"></span> </figure> </article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="_features" class="relative bg-white">
+                <div class="max-w-2xl lg:max-w-7xl px-12 mx-auto">
+                    <div class="flex py-12 sm:py-12 xl:py-16 lg:flex-row flex-col justify-center items-center">
+                        <div class="w-full lg:w-1/2 lg:px-0 sm:px-7 lg:pl-0 xl:pl-10 mb-16 lg:mb-0">
+                            <div class="relative">
+                                <h2 class="mb-5 xl:mb-12 text-3xl leading-tight md:text-4xl md:leading-tight xl:text-5xl lg:leading-tight text-gray-800 font-bold">Protection in 1, 2, 3!</h2>
+                                <div class="flex mb-6 xl:pr-0 lg:pr-12">
+                                    <svg class="w-8 h-8 -mt-0.5 flex-shrink-0 mr-3 xl:mr-5 text-indigo-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                    <div class="max-w-md lg:max-w-sm">
+                                        <h3 class="mb-2 -mt-1 text-xl md:text-xl font-semibold text-gray-700">Upload your files</h3>
+                                        <p class="text-gray-400 leading-loose">Easily and securely upload your files and data to the VirtualGuard platform. Our user-friendly interface ensures a seamless protection process.</p>
+                                    </div>
+                                </div>
+                                <div class="flex mb-6 xl:pr-0 lg:pr-12">
+                                    <svg class="w-8 h-8 -mt-0.5 flex-shrink-0 mr-3 xl:mr-5 text-indigo-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                    <div class="max-w-md lg:max-w-sm">
+                                        <h3 class="mb-2 -mt-1 text-xl md:text-xl font-semibold text-gray-700">Configure your settings</h3>
+                                        <p class="text-gray-400 leading-loose">Configure your settings and preferences effortlessly. VirtualGuard provides a customizable and intuitive environment to meet your specific needs.</p>
+                                    </div>
+                                </div>
+                                <div class="flex xl:pr-0 lg:pr-12">
+                                    <svg class="w-8 h-8 -mt-0.5 flex-shrink-0 mr-3 xl:mr-5 text-indigo-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                    <div class="max-w-md lg:max-w-sm">
+                                        <h3 class="mb-2 -mt-1 text-xl md:text-xl font-semibold text-gray-700">Protect and download</h3>
+                                        <p class="text-gray-400 leading-loose">VirtualGuard ensures top-notch protection for your code and applications. Benefit from advanced security features at the click of a button.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div data-tilt class="relative w-full lg:w-1/2 h-full">
+                            <!-- Background Image -->
+                            <img class="w-full h-full shadow-sm rounded-2xl" src="/assets/panel.png" alt="Background Image">
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="flex justify-center lg:flex-row pb-12 xl:pb-16 flex-col-reverse items-center">
+                        <div data-tilt class="w-full lg:w-1/2 lg:px-0 mb-16 lg:mb-0">
+                            <div class="w-full h-full bg-gradient-to-br shadow-sm border-b-4 border-r-4 border-pink-200 from-red-100 to-pink-200 p-20 pb-0 rounded-2xl">
+                                <img src="https://cdn.devdojo.com/images/february2022/phone-3d.png">
+                            </div>
+                        </div>
+                        <div class="w-full lg:w-1/2 mb-16 ml-0 sm:px-5 sm:pl-8 xl:pl-20 lg:mb-0">
+                            <div class="relative">
+                                <h2 class="mb-5 xl:mb-12 text-3xl leading-tight md:text-4xl md:leading-tight xl:text-5xl lg:leading-tight font-bold">At a glance</h2>
+                                <div class="flex mb-6">
+                                    <svg class="w-8 h-8 -mt-0.5 flex-shrink-0 mr-3 xl:mr-5 text-pink-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                    <div class="max-w-md lg:max-w-sm">
+                                        <h3 class="mb-2 -mt-1 text-xl md:text-xl font-semibold text-gray-700">Your code is translated</h3>
+                                        <p class="text-gray-400 leading-loose">VirtualGuard undergoes a transformative code translation, converting an application's instructions into a unique command set. This set is then executed on a specialized virtual CPU with a distinct architecture, enhancing security through obfuscation.</p>
+                                    </div>
+                                </div>
+                                <div class="flex mb-6">
+                                    <svg class="w-8 h-8 -mt-0.5 flex-shrink-0 mr-3 xl:mr-5 text-pink-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                    <div class="max-w-md lg:max-w-sm">
+                                        <h3 class="mb-2 -mt-1 text-xl md:text-xl font-semibold text-gray-700">High Compatibility</h3>
+                                        <p class="text-gray-400 leading-loose">The virtual CPU and the newly generated command set seamlessly integrate into the safeguarded application. This integration is accomplished without the need for additional libraries or modules, streamlining the deployment process.</p>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <svg class="w-8 h-8 -mt-0.5 flex-shrink-0 mr-3 xl:mr-5 text-pink-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                    <div class="max-w-md lg:max-w-sm">
+                                        <h3 class="mb-2 -mt-1 text-xl md:text-xl font-semibold text-gray-700">Multi-Platform Support</h3>
+                                        <p class="text-gray-400 leading-loose">VirtualGuard's obfuscation technique provides robust support for various platforms, including .NET Core versions 2.0, 2.1, 2.2, 3.0, 3.1, 5.0, 6.0, and 7.0, along with .NET Framework versions 4.6.1 through 4.8.1. Additionally, it extends compatibility to Mono versions 5.4 and 6.4, as well as Unity versions 2018.1 through 2021.2.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="_pricing"
+            x-data="{ billing: 'Monthly', basic: {'Monthly' : '45', 'Yearly' : '175' }, pro: {'Monthly' : '55', 'Yearly' : '225' }, cycle: {'Monthly' : 'mo', 'Yearly' : 'yr' } }"
+            class="bg-gray-100">
+            <div class="px-6 py-20 mx-auto bg-gray-100 max-w-7xl lg:px-8">
+                <div class="mb-6 text-center md:mb-8">
+                    <h2 class="mb-2 text-3xl font-bold text-gray-800 md:text-4xl lg:text-5xl md:mb-4">Pricing Made Simple.</h2>
+                    <p class="text-lg text-gray-600 xl:text-xl">Simple pricing for companies of all sizes.</p>
+                </div>
+                
+                <div class="flex justify-center mb-8 md:mb-16 lg:mb-20">
+                    <nav class="relative inline-flex overflow-hidden text-sm border border-gray-300 rounded-lg" data-rounded="rounded-lg">
+                        <div class="absolute w-1/2 h-full transition-all duration-150 ease-out bg-gradient-to-br from-indigo-600 to-indigo-700" :class="{ 'left-0' : billing == 'Monthly', 'left-1/2' : billing == 'Yearly' }" data-primary="indigo-600"></div>
+                        <button @click="billing='Monthly'" class="relative z-20 px-5 py-3 font-bold focus:outline-none" :class="{ 'text-white' : billing == 'Monthly', 'text-gray-600 hover:text-gray-700' : billing == 'Yearly' }">
+                            Monthly Plan
+                        </button>
+                        <button @click="billing='Yearly'" class="relative z-20 px-6 py-3 font-bold focus:outline-none" :class="{ 'text-white' : billing == 'Yearly', 'text-gray-600 hover:text-gray-700' : billing == 'Monthly' }">
+                            Yearly Plan
+                        </button>
+                    </nav>
+                </div>
+                
+                <div class="grid items-start md:grid-cols-3 gap-x-8 gap-y-8">
+                    <div class="overflow-hidden bg-white border-2 border-indigo-100 rounded-lg md:border-gray-100" data-primary="indigo-600" data-rounded="rounded-lg" data-rounded-max="rounded-full">
+                        <div class="p-5 md:p-8">
+                            <div class="flex items-baseline justify-between mb-4">
+                                <h4 class="text-xl font-bold lg:text-2xl">Free Plan</h4>
+                                <span class="text-xl font-bold lg:text-2xl">$0</span>
+                            </div>
+                            <p class="mb-6 text-lg text-gray-500"></p>
+                            <a href="/p/register" class="block px-5 py-3 font-bold text-center border rounded-lg lg:px-8 bg-gradient-to-br hover:from-indigo-500 hover:to-indigo-700 hover:text-white" data-primary="indigo-600" data-rounded="rounded-lg">Start for free</a>
+                        </div>
+                        <div class="p-5 border-t border-gray-200 md:p-8 bg-gray-50">
+                            <ul class="space-y-4 text-lg text-gray-600">
+                                <li class="flex items-center space-x-2">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                    <span>Smart Symbol Renaming</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                    <span>Virtual Data Encryption</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                    <span>5 Maximum Projects</span>
+                                </li>
+                                <li class="flex items-center space-x-2 opacity-50">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                    </div>
+                                    <span>Code Virtualization</span>
+                                </li>
+                                <li class="flex items-center space-x-2 opacity-50">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                    </div>
+                                    <span>Virtual Mutations</span>
+                                </li>
+                                <li class="flex items-center space-x-2 opacity-50">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                    </div>
+                                    <span>Anti-Debug + Integrity Checks</span>
+                                </li>
+                                <li class="flex items-center space-x-2 opacity-50">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                    </div>
+                                    <span>VirtualGuard Cloud™</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="overflow-hidden bg-white border-2 border-indigo-100 rounded-lg md:transform md:-translate-y-10 md:-mb-10 md:shadow-md md:hover:shadow-xl md:transition-all md:duration-500 md:border" data-primary="indigo-600" data-rounded="rounded-lg" data-rounded-max="rounded-full">
+                        <div class="p-5 md:p-8">
+                            <div class="flex items-baseline justify-between mb-4">
+                                <h4 class="text-xl font-bold lg:text-2xl">Pro Plan</h4>
+                                <span class="text-xl font-bold lg:text-2xl">$<span x-text="pro[billing]"></span><span class="ml-1 text-xs font-light">/ <span x-text="cycle[billing]"></span></span></span>
+                            </div>
+                            <p class="mb-6 text-lg text-gray-500">Level-up your game with a pro plan</p>
+                            <a href="#" class="block px-5 py-3 font-bold text-center text-white border rounded-lg lg:px-8 bg-gradient-to-br from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-700" data-primary="indigo-600" data-rounded="rounded-lg">Purchase</a>
+                        </div>
+                        <div class="p-5 border-t border-gray-200 md:p-8 bg-gray-50">
+                            <ul class="space-y-4 text-lg text-gray-600">
+                                <li class="flex items-center space-x-2">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                    <span>Smart Symbol Renaming</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                    <span>Virtual Data Encryption</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                    <span>Unlimited Projects</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                    <span>Code Virtualization + Mutations</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                    <span>Anti-Debug + Integrity Checks</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                    <span>VirtualGuard Cloud™</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                    <span>Watermarking</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                    <span>Unlimited CLI + API Access</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="overflow-hidden bg-white border-2 border-indigo-100 rounded-lg md:border-gray-100" data-primary="indigo-600" data-rounded="rounded-lg" data-rounded-max="rounded-full">
+                        <div class="p-5 md:p-8">
+                            <div class="flex items-baseline justify-between mb-4">
+                                <h4 class="text-xl font-bold lg:text-2xl">Basic Plan</h4>
+                                <span class="text-xl font-bold lg:text-2xl">$<span x-text="basic[billing]"></span><span class="ml-1 text-xs font-light">/ <span x-text="cycle[billing]"></span></span></span>
+                            </div>
+                            <p class="mb-6 text-lg text-gray-500">Start integrating the basic plan</p>
+                            <a href="#" class="block px-5 py-3 font-bold text-center border rounded-lg lg:px-8 bg-gradient-to-br hover:from-indigo-500 hover:to-indigo-700 hover:text-white" data-primary="indigo-600" data-rounded="rounded-lg">Purchase</a>
+                        </div>
+                        <div class="p-5 border-t border-gray-200 md:p-8 bg-gray-50">
+                            <ul class="space-y-4 text-lg text-gray-600">
+                                <li class="flex items-center space-x-2">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                    <span>Smart Symbol Renaming</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                    <span>Virtual Data Encryption</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                    <span>Unlimited Projects</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                    <span>Code Virtualization + Mutations</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                    </div>
+                                    <span>Anti-Debug + Integrity Checks</span>
+                                </li>
+                                <li class="flex items-center space-x-2 opacity-50">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                    </div>
+                                    <span>VirtualGuard Cloud™</span>
+                                </li>
+                                <li class="flex items-center space-x-2 opacity-50">
+                                    <div class="w-6 h-6">
+                                        <svg class="text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                    </div>
+                                    <span>Watermarking</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="bg-white">
+            <div class="max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
+                <nav class="flex flex-wrap justify-center -mx-5 -my-2">
+                    <div class="px-5 py-2">
+                        <a href="#_hero" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                            Home
+                        </a>
+                    </div>
+                    <div class="px-5 py-2">
+                        <a href="#_features" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                            Features
+                        </a>
+                    </div>
+                    <div class="px-5 py-2">
+                        <a href="#_pricing" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                            Pricing
+                        </a>
+                    </div>
+                    <div class="px-5 py-2">
+                        <a href="/p/info/contact class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                            Contact
+                        </a>
+                    </div>
+                    <div class="px-5 py-2">
+                        <a href="#_" class="text-base leading-6 text-gray-500 hover:text-gray-900">
+                            Terms
+                        </a>
+                    </div>
+                </nav>
+                <div class="flex justify-center mt-8 space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <span class="sr-only">Twitter</span>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <span class="sr-only">GitHub</span>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+                <p class="mt-8 text-base leading-6 text-center text-gray-400">
+                    &copy; 2023 VirtualGuard. All rights reserved.
+                </p>
+            </div>
+        </section>
+        
+        <!-- AlpineJS Library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.0/alpine.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+        <script src="/global_js/main_page.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
+        
+        
+    </body>
+    
+    
+    
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .cd-image-container {
+            position: relative;
+            width: 90%;
+            max-width: 768px;
+            margin: 0em auto;
+            border-radius: 10px; /* Added for rounded corners */
+            overflow: hidden; /* Ensure rounded corners are visible */
+            transform-style: preserve-3d
+        }
+        
+        .cd-image-container img {
+            display: block;
+        }
+        
+        .cd-image-label {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            color: #ffffff;
+            padding: 1em;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            opacity: 0;
+            -webkit-transform: translateY(20px);
+            -moz-transform: translateY(20px);
+            -ms-transform: translateY(20px);
+            -o-transform: translateY(20px);
+            transform: translateY(20px);
+            -webkit-transition: -webkit-transform 0.3s 0.7s, opacity 0.3s 0.7s;
+            -moz-transition: -moz-transform 0.3s 0.7s, opacity 0.3s 0.7s;
+            transition: transform 0.3s 0.7s, opacity 0.3s 0.7s;
+        }
+        
+        .cd-image-label.is-hidden {
+            visibility: hidden;
+        }
+        
+        .is-visible .cd-image-label {
+            opacity: 1;
+            -webkit-transform: translateY(0);
+            -moz-transform: translateY(0);
+            -ms-transform: translateY(0);
+            -o-transform: translateY(0);
+            transform: translateY(0);
+        }
+        
+        .cd-resize-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            overflow: hidden;
+            /* Force Hardware Acceleration in WebKit */
+            -webkit-transform: translateZ(0);
+            -moz-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            -o-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        
+        .cd-resize-img img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: block;
+            height: 100%;
+            width: auto;
+            max-width: none;
+        }
+        
+        .cd-resize-img .cd-image-label {
+            right: auto;
+            left: 0;
+        }
+        
+        .is-visible .cd-resize-img {
+            width: 50%;
+            /* bounce in animation of the modified image */
+            -webkit-animation: cd-bounce-in 0.7s;
+            -moz-animation: cd-bounce-in 0.7s;
+            animation: cd-bounce-in 0.7s;
+        }
+        
+        @-webkit-keyframes cd-bounce-in {
+            0% {
+                width: 0;
+            }
+            60% {
+                width: 55%;
+            }
+            100% {
+                width: 50%;
+            }
+        }
+        
+        @-moz-keyframes cd-bounce-in {
+            0% {
+                width: 0;
+            }
+            60% {
+                width: 55%;
+            }
+            100% {
+                width: 50%;
+            }
+        }
+        
+        @keyframes cd-bounce-in {
+            0% {
+                width: 0;
+            }
+            60% {
+                width: 55%;
+            }
+            100% {
+                width: 50%;
+            }
+        }
+        
+        .cd-handle {
+            position: absolute;
+            height: 80px;
+            width: 80px;
+            /* center the element */
+            left: 50%;
+            top: 50%;
+            margin-left: -40px;
+            margin-top: -40px;
+            background: url("./assets/shield.png") no-repeat center center;
+            background-size: cover; /* Make sure the image covers the entire handle */
+            cursor: move;
+            opacity: 0;
+            -webkit-transform: translate3d(0, 0, 0) scale(0);
+            -moz-transform: translate3d(0, 0, 0) scale(0);
+            -ms-transform: translate3d(0, 0, 0) scale(0);
+            -o-transform: translate3d(0, 0, 0) scale(0);
+            transform: translate3d(0, 0, 0) scale(0);
+            transform: translateZ(20px);
+        }
+        
+        .is-visible .cd-handle {
+            opacity: 1;
+            -webkit-transform: translate3d(0, 0, 0) scale(1);
+            -moz-transform: translate3d(0, 0, 0) scale(1);
+            -ms-transform: translate3d(0, 0, 0) scale(1);
+            -o-transform: translate3d(0, 0, 0) scale(1);
+            transform: translate3d(0, 0, 0) scale(1);
+            -webkit-transition: -webkit-transform 0.3s 0.7s, opacity 0s 0.7s;
+            -moz-transition: -moz-transform 0.3s 0.7s, opacity 0s 0.7s;
+            transition: transform 0.3s 0.7s, opacity 0s 0.7s;
+        }
+        
+        @keyframes fade-out-in {
+            0% {
+                opacity: 1;
+            }
+            25%
+            {
+                opacity: 0;
+            }
+            75%
+            {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+    </style>
+    
+    
+    </html>
